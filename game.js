@@ -25,7 +25,10 @@ function render(theDojo) {
 //        under the adjacent (all sides and corners) squares.
 //        Use i and j as the indexes to check theDojo.
 function howMany(i, j, element) {
-    console.log({i, j});
+    // console.log({i, j});
+    if (theDojo[i][j] == 1){
+        dojoDiv.innerHTML = `<button onclick="location.reload()">restart</button>`;
+    }
     let sum = 0;
     for (let row = i - 1; row < i + 2; ++ row) {
         for (let column = j - 1; column < j + 2; ++ column) {
@@ -46,7 +49,7 @@ function howMany(i, j, element) {
     }
     sum-= theDojo[i][j]
     //console.log(sum);
-    //console.log(element);
+    console.log(element.querySelector);
     return element.innerHTML = sum;
 }
     
@@ -56,7 +59,7 @@ function howMany(i, j, element) {
 // 3. if you click on a ninja you must restart the game 
 //    dojoDiv.innerHTML = `<button onclick="location.reload()">restart</button>`;
 
-// Bonus
+// Bonus - working now
 function createNinjaSweeper(ninjaNum){
     let count = 0;
     // wipe TheDojo board
@@ -66,11 +69,17 @@ function createNinjaSweeper(ninjaNum){
         }
     }
     while (count <= ninjaNum){
-        theDojo[Math.floor(Math.random*theDojo.length)][Math.floor(Math.random*theDojo.length)];
-        count++;
+        var randX = Math.floor(Math.random()*theDojo.length);
+        var randY = Math.floor(Math.random()*theDojo.length);
+        if (theDojo[randX][randY] == 0){
+            theDojo[randX][randY] = 1;
+            count++;
+        }
     }
 }
-    
+// clear board to set number of ninja's
+createNinjaSweeper(10);
+
 // start the game
 // message to greet a user of the game
 var style="color:cyan;font-size:1.5rem;font-weight:bold;";
