@@ -55,6 +55,21 @@ function howMany(i, j, element) {
 // 2. at the start randomly place 10 ninjas into theDojo with at most 1 on each spot
 // 3. if you click on a ninja you must restart the game 
 //    dojoDiv.innerHTML = `<button onclick="location.reload()">restart</button>`;
+
+// Bonus
+function createNinjaSweeper(ninjaNum){
+    let count = 0;
+    // wipe TheDojo board
+    for (var i = 0; i < theDojo.length; i++){
+        for (var j = 0; j < theDojo[i].length; j++){
+            theDojo[i][j] = 0;
+        }
+    }
+    while (count <= ninjaNum){
+        theDojo[Math.floor(Math.random*theDojo.length)][Math.floor(Math.random*theDojo.length)];
+        count++;
+    }
+}
     
 // start the game
 // message to greet a user of the game
