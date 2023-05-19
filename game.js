@@ -45,8 +45,9 @@ function howMany(i, j, element) {
         }
     }
     sum-= theDojo[i][j]
-    console.log(sum);
-    return sum;
+    //console.log(sum);
+    //console.log(element);
+    return element.innerHTML = sum;
 }
     
 // BONUS CHALLENGES
