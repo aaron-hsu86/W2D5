@@ -25,32 +25,34 @@ function render(theDojo) {
 //        under the adjacent (all sides and corners) squares.
 //        Use i and j as the indexes to check theDojo.
 function howMany(i, j, element) {
-    // console.log({i, j});
+    // check if clicked on ninja
     if (theDojo[i][j] == 1){
         dojoDiv.innerHTML = `<button onclick="location.reload()">restart</button>`;
-    }
-    let sum = 0;
-    for (let row = i - 1; row < i + 2; ++ row) {
-        for (let column = j - 1; column < j + 2; ++ column) {
-            if (row < 0) {
-                row = 0;
+    } else { // did not click on ninja, check how many ninja's around spot
+        let sum = 0;
+        for (let row = i - 1; row < i + 2; ++ row) {
+            for (let column = j - 1; column < j + 2; ++ column) {
+                // if row is out of bounds on left side, move into bounds
+                if (row < 0) {
+                    row = 0;
+                } // if row is out of bounds on right side, break for loop
+                else if (row >= theDojo.length) {
+                    break;
+                } // if column is out of bounds on top side, move into bounds
+                if (column < 0) {
+                    column = 0;
+                } // if column is out of bounds on bottom side, break for loop
+                else if (column >= theDojo.length) {
+                    break;
+                }
+                // row/column is in bounds, add to sum
+                sum += theDojo[row][column];
             }
-            else if (row >= theDojo.length) {
-                break;
-            }
-            if (column < 0) {
-                column = 0;
-            }
-            else if (column >= theDojo.length) {
-                break;
-            }
-            sum += theDojo[row][column];
         }
+        // minus selected block, but is redundant code for ninjasweeper as this spot will be 0.
+        sum-= theDojo[i][j]
+        return element.innerHTML = sum;
     }
-    sum-= theDojo[i][j]
-    //console.log(sum);
-    console.log(element.querySelector);
-    return element.innerHTML = sum;
 }
     
 // BONUS CHALLENGES
